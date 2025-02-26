@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عجلة الحظ</title>
+    <link rel="stylesheet" href="wheels.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎡 عجلة الحظ</h1>
+
+        <!-- عرض أسماء المشاركين -->
+        <div id="playersList"></div>
+
+        <button class="random-btn" onclick="pickRandomName()">🎲 اختر اسم عشوائي</button>
+
+        <div id="randomPopup" class="hidden">
+            <h2 id="randomName"></h2>
+        </div>
+    </div>
+
+    <script src="wheels.js"></script>
+
+</body>
+</html>

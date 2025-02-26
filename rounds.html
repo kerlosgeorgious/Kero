@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار الجولات والوقت</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎯 إعدادات التحدي</h1>
+
+        <label for="rounds">عدد الجولات:</label>
+        <select id="rounds">
+            <option value="2">2 جولات</option>
+            <option value="5">5 جولات</option>
+            <option value="10">10 جولات</option>
+            <option value="20">20 جولات</option>
+        </select>
+
+        <label for="time">الوقت لكل جولة:</label>
+        <select id="time">
+            <option value="30">30 ثانية</option>
+            <option value="45">45 ثانية</option>
+            <option value="60">60 ثانية</option>
+        </select>
+
+        <button onclick="saveSettings()">التالي</button>
+    </div>
+
+    <script>
+        function saveSettings() {
+            let selectedRounds = document.getElementById("rounds").value;
+            let selectedTime = document.getElementById("time").value;
+
+            localStorage.setItem("selectedRounds", selectedRounds);
+            localStorage.setItem("selectedTime", selectedTime);
+
+            // بعد الحفظ، انتقل إلى اختيار الفئة
+            window.location.href = "categories.html";
+        }
+    </script>
+
+</body>
+</html>

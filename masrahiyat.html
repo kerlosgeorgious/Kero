@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي المسرحيات</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎭 تحدي المسرحيات</h1>
+        <p>🔄 دور الفريق: <span id="teamName"></span></p>
+        <p>🏆 النقاط: <span id="teamScore">0</span></p>
+        <p>⏳ الوقت المتبقي: <span id="timer"></span> ثانية</p>
+        <p>🎯 الجولات المتبقية: <span id="currentRound"></span> / <span id="totalRounds"></span></p>
+
+        <div class="question-box">
+            <p id="question"></p>
+        </div>
+
+        <button id="correctBtn" onclick="answer(true)">✅ صح</button>
+        <button id="wrongBtn" onclick="answer(false)">❌ غشاش</button>
+
+    </div>
+
+    <script>
+        let totalRounds = parseInt(localStorage.getItem("selectedRounds")) || 5;
+        let timePerRound = parseInt(localStorage.getItem("selectedTime")) || 30;
+        let team1 = localStorage.getItem("team1Name") || "الفريق الأول";
+        let team2 = localStorage.getItem("team2Name") || "الفريق الثاني";
+
+        let teams = [{ name: team1, score: 0 }, { name: team2, score: 0 }];
+        let currentTeamIndex = 0;
+        let currentRound = 1;
+        let totalQuestions = totalRounds * 2;
+        let timer;
+        let timeLeft;
+        let isAnswered = false;
+
+        let masrahiyat = [
+            "الواد سيد الشغال", "مدرسة المشاغبين", "شاهد مشفش حاجة", "الزعيم", "سك على بناتك",
+            "ريا وسكينة", "بودي جارد", "حزمني يا", "كده أوكيه", "العيال كبرت",
+            "أنا وهو وهي", "أهلا يا بكوات", "حلو الكلام", "الدخول بالملابس الرسمية", "جوز ولوز",
+            "شارع محمد علي", "خد الفلوس واجري", "المحظوظ وأنا", "لعبة الست", "كارمن",
+            "دو ري مي فاصوليا", "طابونة حمزة", "تخاريف", "أنا فين وإنتي فين", "بهلول في إسطنبول",
+            "هالة حبيبتي", "كباريه", "كده رضا", "سكة السلامة", "حصل ياسعادة البيه",
+            "العسكري الأخضر", "ممنوع الخروج", "الغبي وأنا", "مراتي زعيمة عصابة", "ولا في الأحلام",
+            "بمبة كشر", "الدنيا لما تلف", "واحد لمون والتاني مجنون", "المهر", "خلي بالك من جيرانك"
+        ];
+
+        function updateUI() {
+            document.getElementById("teamName").textContent = teams[currentTeamIndex].name;
+            document.getElementById("teamScore").textContent = teams[currentTeamIndex].score;
+            document.getElementById("currentRound").textContent = currentRound;
+            document.getElementById("totalRounds").textContent = totalRounds * 2;
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = timePerRound;
+            document.getElementById("timer").textContent = timeLeft;
+
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    document.getElementById("timer").textContent = timeLeft;
+                } else {
+                    clearInterval(timer);
+                    nextTurn();
+                }
+            }, 1000);
+        }
+
+        function getRandomQuestion() {
+            let randomIndex = Math.floor(Math.random() * masrahiyat.length);
+            document.getElementById("question").textContent = masrahiyat[randomIndex];
+        }
+
+        function answer(isCorrect) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            clearInterval(timer);
+
+            if (isCorrect) {
+                teams[currentTeamIndex].score += 3;
+                document.getElementById("teamScore").textContent = teams[currentTeamIndex].score;
+            }
+
+            document.getElementById("correctBtn").disabled = true;
+            document.getElementById("wrongBtn").disabled = true;
+
+            setTimeout(nextTurn, 1000);
+        }
+
+        function nextTurn() {
+            isAnswered = false;
+            document.getElementById("correctBtn").disabled = false;
+            document.getElementById("wrongBtn").disabled = false;
+
+            if (currentRound < totalQuestions) {
+                currentRound++;
+                currentTeamIndex = (currentTeamIndex + 1) % teams.length;
+                getRandomQuestion();
+                updateUI();
+                startTimer();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            localStorage.setItem("finalScore1", teams[0].score);
+            localStorage.setItem("finalScore2", teams[1].score);
+            setTimeout(() => {
+                window.location.href = "results.html";
+            }, 3000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateUI();
+            getRandomQuestion();
+            startTimer();
+        });
+    </script>
+</body>
+</html>

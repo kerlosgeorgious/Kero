@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي الأوامر</title>
+    <link rel="stylesheet" href="commands.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="chosenName">📛 اسم اللاعب</h2>
+        <h3 id="playerScore">🏆 النقاط: 0</h3> <!-- عرض النقاط هنا -->
+        
+        <div class="order-box">
+            <h3 id="randomOrder">جارٍ تحميل التحدي...</h3>
+        </div>
+
+        <h3 id="question">🤔 هل نفذت الأمر؟</h3> <!-- الجملة الجديدة -->
+
+        <div class="buttons">
+            <button onclick="updateScore(true)">✅ نعم</button>
+            <button onclick="updateScore(false)">❌ لا</button>
+            <button onclick="endChallenge()">⏹️ إنهاء التحدي</button> <!-- زر إنهاء التحدي -->
+        </div>
+    </div>
+
+    <script src="orders.js"></script> <!-- تحميل قائمة التحديات -->
+    <script src="commands.js"></script> <!-- تحميل سكريبت إدارة التحديات -->
+
+</body>
+</html>

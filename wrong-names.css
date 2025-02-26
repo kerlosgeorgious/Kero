@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ffcc00; /* الخلفية صفراء */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#playersList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: darkred;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

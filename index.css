@@ -1,0 +1,50 @@
+/* ضبط الخلفية */
+body {
+    background-color: yellow; /* خلفية صفراء */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* تنسيق اللوجو */
+.logo-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.logo-container img {
+    width: 120px; /* تغيير الحجم حسب الحاجة */
+    height: auto;
+}
+
+/* تنسيق العنوان */
+h1 {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* تنسيق الأزرار */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.btn:hover {
+    background-color: darkorange;
+}

@@ -1,0 +1,73 @@
+/* تنسيق عام للصفحة */
+body {
+    font-family: 'Cairo', sans-serif;
+    text-align: center;
+    background-color: #ffcc00;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* تنسيق الحاوية */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+}
+
+/* قائمة الأسماء */
+#playersList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* تنسيق المربعات لكل اسم */
+.name-box {
+    background-color: #fff;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+/* زر اختيار اسم عشوائي */
+.random-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.random-btn:hover {
+    background-color: #0056b3;
+}
+
+/* النافذة المنبثقة عند اختيار اسم */
+#randomPopup {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختيار أسماء الفرق</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏆 اختيار أسماء الفرق</h1>
+
+        <div class="teams-container">
+            <div class="team-box">
+                <label for="team1">✍️ اسم الفريق الأول:</label>
+                <input type="text" id="team1" placeholder="أدخل اسم الفريق الأول">
+            </div>
+
+            <div class="team-box">
+                <label for="team2">✍️ اسم الفريق الثاني:</label>
+                <input type="text" id="team2" placeholder="أدخل اسم الفريق الثاني">
+            </div>
+        </div>
+
+        <p id="error-message" class="hidden">⚠️ من فضلك أدخل أسماء الفرق للمتابعة!</p>
+
+        <button onclick="saveTeams()">التالي ⏭️</button>
+    </div>
+
+    <script>
+        function saveTeams() {
+            let team1 = document.getElementById("team1").value.trim();
+            let team2 = document.getElementById("team2").value.trim();
+            let errorMessage = document.getElementById("error-message");
+
+            if (team1 === "" || team2 === "") {
+                errorMessage.classList.remove("hidden");
+                return;
+            }
+
+            localStorage.setItem("team1Name", team1);
+            localStorage.setItem("team2Name", team2);
+            window.location.href = "rounds.html"; // الانتقال لاختيار عدد الجولات
+        }
+    </script>
+
+</body>
+</html>

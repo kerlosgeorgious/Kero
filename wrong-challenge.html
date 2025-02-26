@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي جاوب خطأ</title>
+    <link rel="stylesheet" href="wrong-challenge.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="playerName">📛 اسم اللاعب</h2>
+        <h3 id="playerScore">🏆 النقاط: 0</h3>
+
+        <div class="question-box">
+            <h3 id="questionText">جارٍ تحميل السؤال...</h3>
+        </div>
+
+        <!-- الجملة المضافة قبل أزرار الإجابة -->
+        <h4 id="answerPrompt">❓ هل جاوبت خطأ؟ عليك أن تجيب خطأ! ❓</h4>
+
+        <div class="buttons">
+            <button id="correctBtn">✅ صح</button>
+            <button id="wrongBtn">❌ خطأ</button>
+        </div>
+
+        <button id="endGameBtn">⏹️ إنهاء اللعبة</button>
+    </div>
+
+    <script src="questions.js"></script> <!-- تحميل الأسئلة أولًا -->
+    <script src="wrong-challenge.js"></script> <!-- تشغيل منطق التحدي -->
+</body>
+</html>

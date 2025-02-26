@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي الاعترافات</title>
+    <link rel="stylesheet" href="confessions.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="chosenName">👤 اللاعب: ...</h2>
+        <div class="confession-box">
+            <h3 id="randomConfession">📝 جاري تحميل الاعتراف...</h3>
+        </div>
+
+        <h3 id="question">🤔 هل اعترفت؟</h3>
+
+        <div class="buttons">
+            <button onclick="handleAnswer(true)">✅ نعم</button>
+            <button onclick="handleAnswer(false)">❌ لا</button>
+        </div>
+
+        <button class="end-btn" onclick="endConfession()">🏁 إنهاء التحدي</button>
+
+    </div>
+
+    <script src="confessionsData.js"></script> <!-- تحميل الاعترافات -->
+    <script src="confessions.js"></script> <!-- تشغيل التحدي -->
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج التحدي</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🏆 النتائج النهائية</h1>
+        <p>📢 <span id="team1"></span>: <span id="score1"></span> نقطة</p>
+        <p>📢 <span id="team2"></span>: <span id="score2"></span> نقطة</p>
+
+        <button onclick="restartGame()">🔄 العودة للرئيسية</button>
+    </div>
+
+    <script>
+        document.getElementById("team1").textContent = localStorage.getItem("team1Name") || "الفريق الأول";
+        document.getElementById("team2").textContent = localStorage.getItem("team2Name") || "الفريق الثاني";
+        document.getElementById("score1").textContent = localStorage.getItem("finalScore1") || 0;
+        document.getElementById("score2").textContent = localStorage.getItem("finalScore2") || 0;
+
+        function restartGame() {
+            localStorage.clear();
+            window.location.href = "index.html"; // العودة للصفحة الرئيسية
+        }
+    </script>
+
+</body>
+</html>

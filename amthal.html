@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي الأمثال</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>📜 تحدي الأمثال</h1>
+        <p>🔄 دور الفريق: <span id="teamName"></span></p>
+        <p>🏆 النقاط: <span id="teamScore">0</span></p>
+        <p>⏳ الوقت المتبقي: <span id="timer"></span> ثانية</p>
+        <p>🎯 الجولات المتبقية: <span id="currentRound"></span> / <span id="totalRounds"></span></p>
+
+        <div class="question-box">
+            <p id="question"></p>
+        </div>
+
+        <button id="correctBtn" onclick="answer(true)">✅ صح</button>
+        <button id="wrongBtn" onclick="answer(false)">❌ غشاش</button>
+
+    </div>
+
+    <script>
+        let totalRounds = parseInt(localStorage.getItem("selectedRounds")) || 5;
+        let timePerRound = parseInt(localStorage.getItem("selectedTime")) || 30;
+        let team1 = localStorage.getItem("team1Name") || "الفريق الأول";
+        let team2 = localStorage.getItem("team2Name") || "الفريق الثاني";
+
+        let teams = [{ name: team1, score: 0 }, { name: team2, score: 0 }];
+        let currentTeamIndex = 0;
+        let currentRound = 1;
+        let totalQuestions = totalRounds * 2;
+        let timer;
+        let timeLeft;
+        let isAnswered = false;
+
+        let amthal = [
+            "القرد في عين أمه غزال", "عصفور في اليد خير من عشرة على الشجرة", "اللي اختشوا ماتوا",
+            "إيد لوحدها متسقفش", "كل تأخيرة وفيها خيرة", "يا بخت من بات مظلوم ولا بات ظالم",
+            "الوقت كالسيف إن لم تقطعه قطعك", "البعيد عن العين بعيد عن القلب", "من راقب الناس مات هما",
+            "يخلق من الشبه أربعين", "الحاجة أم الاختراع", "العلم في الصغر كالنقش على الحجر",
+            "الصديق وقت الضيق", "كما تدين تدان", "التكرار يعلم الشطار", "درهم وقاية خير من قنطار علاج",
+            "لا يقع إلا الشاطر", "جحا أولى بلحمه", "الضربة التي لا تقتلك تقويك", "من جد وجد ومن زرع حصد",
+            "اضحك للدنيا تضحكلك", "في التأني السلامة وفي العجلة الندامة", "من شب على شيء شاب عليه",
+            "الساكت عن الحق شيطان أخرس", "لا تؤجل عمل اليوم إلى الغد", "رب صدفة خير من ألف ميعاد",
+            "أهل مكة أدرى بشعابها", "الصبر مفتاح الفرج", "العقل زينة", "الجار قبل الدار",
+            "لا تبع جلد الدب قبل صيده", "عدوك ابن كارك", "لا يلدغ المؤمن من جحر مرتين",
+            "الوقاية خير من العلاج", "النار تأكل نفسها إن لم تجد ما تأكله", "الرزق على الله",
+            "إذا أردت أن تطاع فاطلب المستطاع", "أكرم نفسك عن كل دنيء", "خذ الحكمة من أفواه المجانين",
+            "إذا كانت لك ذاكرة قوية وذكريات مريرة فأنت أشقى أهل الأرض"
+        ];
+
+        function updateUI() {
+            document.getElementById("teamName").textContent = teams[currentTeamIndex].name;
+            document.getElementById("teamScore").textContent = teams[currentTeamIndex].score;
+            document.getElementById("currentRound").textContent = currentRound;
+            document.getElementById("totalRounds").textContent = totalRounds * 2;
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = timePerRound;
+            document.getElementById("timer").textContent = timeLeft;
+
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    document.getElementById("timer").textContent = timeLeft;
+                } else {
+                    clearInterval(timer);
+                    nextTurn();
+                }
+            }, 1000);
+        }
+
+        function getRandomQuestion() {
+            let randomIndex = Math.floor(Math.random() * amthal.length);
+            document.getElementById("question").textContent = amthal[randomIndex];
+        }
+
+        function answer(isCorrect) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            clearInterval(timer);
+
+            if (isCorrect) {
+                teams[currentTeamIndex].score += 3;
+                document.getElementById("teamScore").textContent = teams[currentTeamIndex].score;
+            }
+
+            document.getElementById("correctBtn").disabled = true;
+            document.getElementById("wrongBtn").disabled = true;
+
+            setTimeout(nextTurn, 1000);
+        }
+
+        function nextTurn() {
+            isAnswered = false;
+            document.getElementById("correctBtn").disabled = false;
+            document.getElementById("wrongBtn").disabled = false;
+
+            if (currentRound < totalQuestions) {
+                currentRound++;
+                currentTeamIndex = (currentTeamIndex + 1) % teams.length;
+                getRandomQuestion();
+                updateUI();
+                startTimer();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            localStorage.setItem("finalScore1", teams[0].score);
+            localStorage.setItem("finalScore2", teams[1].score);
+            setTimeout(() => {
+                window.location.href = "results.html";
+            }, 3000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            updateUI();
+            getRandomQuestion();
+            startTimer();
+        });
+    </script>
+</body>
+</html>

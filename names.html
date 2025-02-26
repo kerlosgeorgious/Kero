@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدخال الأسماء</title>
+    <link rel="stylesheet" href="names.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>📝 أدخل أسماء اللاعبين</h1>
+        
+        <div id="nameInputContainer">
+            <input type="text" id="nameInput" placeholder="أدخل اسم اللاعب">
+            <button class="add-btn" onclick="addName()">➕ إضافة</button>
+        </div>
+
+        <div id="namesList"></div> <!-- سيتم عرض الأسماء هنا -->
+
+        <button class="start-btn" onclick="goToWheel()">🎡 الذهاب لعجلة الحظ</button>
+        <button class="delete-btn" onclick="clearNames()">🗑️ حذف الكل</button>
+
+    </div>
+
+    <script src="names.js"></script>
+
+</body>
+</html>

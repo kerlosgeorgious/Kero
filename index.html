@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختر واستعد</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎡 اختر واستعد 🎲</h1>
+
+        <div class="buttons-container">
+            <button class="btn" onclick="startChallenge('commands.html')">🔥 تحدي الأوامر 🔥</button>
+            <button class="btn" onclick="startChallenge('confessions.html')">🎤 تحدي الاعترافات 🎤</button>
+            <button class="btn" onclick="location.href='kerlos.html'">🚫 تحدي ولا كلمة 🚫</button>
+            <button class="btn" onclick="location.href='wrong-names.html'">❌ تحدي جاوب خطأ ❌</button>
+        </div>
+
+        <!-- زر "عنا" -->
+        <button class="about-btn" onclick="location.href='details.html'">ℹ️ عنا</button>
+
+    </div>
+
+    <script>
+        function startChallenge(challengePage) {
+            localStorage.setItem("selectedChallenge", challengePage); // تخزين التحدي المحدد
+            location.href = 'names.html'; // تحويل المستخدم لصفحة الأسماء أولًا
+        }
+    </script>
+
+</body>
+</html>
